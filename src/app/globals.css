@@ -1,0 +1,250 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-font-family: "Quicksand", sans-serif;
+  --main-font-color: #2f2f3a;
+  --main-font-size: 18px;
+  --brand-color-blue-main: #7148fc;
+  --brand-color-red: #ef2f4c;
+  --brand-color-blue: #09d8ff;
+  --brand-color-green: #11ef75;
+  --brand-color-yellow: #ffca04;
+  --brand-color-white: #fafafa;
+  --brand-color-grey: #edf2fa;
+
+  --toggle-width: 4.25rem;
+  --toggle-height: 2.15rem;
+  --toggle-padding: 0.22rem;
+}
+
+html {
+  font-size: var(--main-font-size);
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+body,
+body[data-theme="light"] {
+  --color-text-primary: var(--main-font-color);
+  --color-bg-primary: var(--brand-color-grey);
+  --color-bg-toggle: var(--brand-color-blue);
+}
+
+body[data-theme="dark"] {
+  --color-text-primary: var(--brand-color-white);
+  --color-bg-primary: var(--main-font-color);
+  --color-bg-toggle: var(--main-font-color);
+}
+
+body {
+  background: var(--color-bg-primary);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-family: var(--main-font-family);
+  transition: background 0.25s ease-in-out;
+  overflow-x: clip;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.hero-container {
+  position: relative;
+}
+
+.hero-header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
+}
+
+.hero-bio-container {
+  width: 100%;
+  position: absolute;
+  top: 22%;
+  left: 0;
+  z-index: 2;
+}
+
+main {
+  padding: 2rem;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.about-section {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+#about,
+#projects,
+#skills,
+#contact {
+  scroll-margin-top: 5.5rem;
+}
+
+.header-section {
+  text-align: center;
+  margin: 2rem 0 2rem 0;
+}
+
+.header-title-light {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 3.125rem;
+  font-weight: 300;
+  color: var(--main-font-color);
+}
+
+.header-title-dark {
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 3.125rem;
+  font-weight: 300;
+  color: var(--brand-color-white);
+}
+
+.tech-stack-section {
+  max-width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.logo-container p {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.contact-section {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+.social-media-section {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* CSS */
+  .about-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+  }
+}
+
+/* 
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+  .hero-bio-container {
+    top: 5.5rem;
+  }
+  .about-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+  }
+}
+
+/* 
+	##Device = Tablets, Ipads (landscape)
+	##Screen = B/w 768px to 1024px
+  */
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+  .hero-bio-container {
+    top: 5.5rem;
+  }
+  .about-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+  }
+}
+
+/* 
+	##Device = Low Resolution Tablets, Mobiles (Landscape)
+	##Screen = B/w 481px to 767px
+  */
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .hero-bio-container {
+    width: 100%;
+    position: absolute;
+    top: 5.25rem;
+  }
+  .about-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+  }
+}
+
+/* 
+	##Device = Most of the Smartphones Mobiles (Portrait)
+	##Screen = B/w 320px to 479px
+  */
+
+@media (max-width: 480px) {
+  /* CSS */
+  .hero-bio-container {
+    width: 100%;
+    position: absolute;
+    top: 4.85rem;
+  }
+  .about-section {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+    align-items: center;
+  }
+}
+
+/* Phones keep the standard base size so nothing overflows. */
+@media (max-width: 767px) {
+  :root {
+    --main-font-size: 16px;
+  }
+}

@@ -1,0 +1,98 @@
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-header {
+  background: var(--brand-color-blue-main);
+}
+
+.not-found-header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.not-found-logo-link {
+  display: inline-flex;
+}
+
+.not-found-nav-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.not-found-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  justify-content: flex-end;
+}
+
+.not-found-nav a {
+  color: var(--brand-color-white);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.not-found-main {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 2rem 1rem;
+}
+
+.not-found-card {
+  text-align: center;
+  max-width: 40rem;
+}
+
+.not-found-card h1 {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.not-found-card p {
+  margin-bottom: 0.75rem;
+}
+
+.not-found-card a {
+  color: var(--brand-color-blue-main);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.not-found-redirect-text {
+  opacity: 0.75;
+}
+
+@media (max-width: 860px) {
+  .not-found-header-inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1rem;
+  }
+
+  .not-found-logo-link {
+    justify-content: center;
+  }
+
+  .not-found-nav-wrap {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .not-found-nav {
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .not-found-card h1 {
+    font-size: 4rem;
+  }
+}
