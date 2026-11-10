@@ -436,3 +436,8 @@ body[data-theme="dark"] .social-visual-project .social-visual-pills span {
 body[data-theme="dark"] .social-visual-highlights .social-visual-repo {
   background: #3a3a48;
 }
+
+/* Without pinned repositories the GitHub card has little to show: keep it compact. */
+.social-card-github:has(.social-visual-repo-fallback) {
+  min-height: auto;
+}

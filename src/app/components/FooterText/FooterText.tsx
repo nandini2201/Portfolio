@@ -6,6 +6,7 @@ const footerLinks = [
   { label: 'Tech Stack', href: '/#skills' },
   { label: 'Projects', href: '/#projects' },
   { label: 'Contact', href: '/#contact' },
+  { label: 'Resume', href: '/resume' },
 ];
 
 /** Links without a configured URL stay hidden. */

@@ -37,6 +37,9 @@ export const HeroProfile = () => {
           <a className="hero-cta hero-cta-secondary" href="/#contact">
             Contact Me
           </a>
+          <a className="hero-cta hero-cta-secondary" href="/resume">
+            Resume
+          </a>
         </div>
         <HeroSceneControls />
       </div>

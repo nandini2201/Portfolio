@@ -95,6 +95,7 @@ export const Header = ({
               >
                 Contact
               </a>
+              <a href="/resume">Resume</a>
             </nav>
             <div>
               <ThemeToggle />

@@ -107,3 +107,105 @@ export async function getPinnedRepositories(
     return [];
   }
 }
+
+const GITHUB_REST_URL = 'https://api.github.com';
+const FEATURED_REPOSITORY_COUNT = 6;
+
+/** GitHub's own language colours, for the languages most likely to appear. */
+const LANGUAGE_COLORS: Record<string, string> = {
+  Python: '#3572A5',
+  JavaScript: '#f1e05a',
+  TypeScript: '#3178c6',
+  Rust: '#dea584',
+  Go: '#00ADD8',
+  Java: '#b07219',
+  'C++': '#f34b7d',
+  C: '#555555',
+  HTML: '#e34c26',
+  CSS: '#663399',
+  Shell: '#89e051',
+  'Jupyter Notebook': '#DA5B0B',
+};
+
+type RestRepository = {
+  node_id: string;
+  name: string;
+  full_name: string;
+  description: string | null;
+  html_url: string;
+  homepage: string | null;
+  stargazers_count: number;
+  forks_count: number;
+  language: string | null;
+  fork: boolean;
+};
+
+/**
+ * Most recently pushed public repositories, via the unauthenticated REST
+ * API. Repositories with a description are listed first.
+ */
+export async function getRecentRepositories(
+  username: string = GITHUB_USERNAME,
+): Promise<GitHubRepository[]> {
+  if (!username) {
+    return [];
+  }
+
+  try {
+    const response = await fetch(
+      `${GITHUB_REST_URL}/users/${encodeURIComponent(username)}/repos?type=owner&sort=pushed&per_page=30`,
+      {
+        headers: { Accept: 'application/vnd.github+json' },
+        next: { revalidate: REVALIDATE_SECONDS },
+      },
+    );
+
+    if (!response.ok) {
+      console.error(
+        `GitHub REST request failed with status ${response.status}`,
+      );
+      return [];
+    }
+
+    const repositories = (await response.json()) as RestRepository[];
+    const own = repositories.filter((repository) => !repository.fork);
+    const ordered = [
+      ...own.filter((repository) => repository.description),
+      ...own.filter((repository) => !repository.description),
+    ];
+
+    return ordered.slice(0, FEATURED_REPOSITORY_COUNT).map((repository) => ({
+      id: repository.node_id,
+      name: repository.name,
+      nameWithOwner: repository.full_name,
+      description: repository.description,
+      url: repository.html_url,
+      homepageUrl: repository.homepage,
+      stargazerCount: repository.stargazers_count,
+      forkCount: repository.forks_count,
+      primaryLanguage: repository.language
+        ? {
+            name: repository.language,
+            color: LANGUAGE_COLORS[repository.language] ?? '#6b7280',
+          }
+        : null,
+    }));
+  } catch (error) {
+    console.error('Failed to fetch recent repositories', error);
+    return [];
+  }
+}
+
+/**
+ * Repositories for the GitHub card: pinned ones when GITHUB_TOKEN is set and
+ * the profile has pins, otherwise the most recently updated public ones.
+ */
+export async function getFeaturedRepositories(
+  username: string = GITHUB_USERNAME,
+): Promise<GitHubRepository[]> {
+  const pinned = process.env.GITHUB_TOKEN
+    ? await getPinnedRepositories(username)
+    : [];
+
+  return pinned.length > 0 ? pinned : getRecentRepositories(username);
+}

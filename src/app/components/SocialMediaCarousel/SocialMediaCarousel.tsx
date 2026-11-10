@@ -110,6 +110,25 @@ const ClipIcon = () => (
   </svg>
 );
 
+const ProfileScanIcon = () => (
+  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="10" cy="8.5" r="3" stroke="currentColor" strokeWidth="1.7" />
+    <path
+      d="M4.5 18.5c.9-2.6 2.9-4 5.5-4 1 0 1.9.2 2.7.6"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+    />
+    <circle cx="16.5" cy="16" r="2.6" stroke="currentColor" strokeWidth="1.7" />
+    <path
+      d="m18.5 18 2 2"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
 const InvoiceIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path
@@ -259,6 +278,22 @@ const projects: Project[] = [
       'LLM-based scoring for ATS optimization, keyword extraction and skill matching',
       'Asynchronous processing with optimized database queries',
       'Faster responses through caching and backend performance tuning',
+    ],
+    href: 'https://resu-lens-chi.vercel.app/',
+  },
+  {
+    id: 'linkedin-analyzer',
+    name: 'LinkedIn Profile Analyzer',
+    category: 'AI Browser Extension',
+    copy: 'A Chrome extension that reads the LinkedIn profile you are viewing, analyzes it with an LLM and returns clear, practical suggestions to make it stronger.',
+    accent: '#0a66c2',
+    icon: <ProfileScanIcon />,
+    stack: ['JavaScript', 'Chrome Extension', 'Groq API', 'LLM'],
+    highlights: [
+      'Headline scoring that rates how clear and compelling the headline is',
+      'Summary rewrites that suggest a sharper, more engaging About section',
+      'Skill gap detection that flags relevant skills missing from the profile',
+      'Recruiter optimization with tips to improve visibility in recruiter searches',
     ],
   },
   {

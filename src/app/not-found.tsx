@@ -47,6 +47,7 @@ export default function NotFound() {
               <a href="/#projects">Projects</a>
               <a href="/#skills">Tech Stack</a>
               <a href="/#contact">Contact</a>
+              <a href="/resume">Resume</a>
             </nav>
             <ThemeToggle />
           </div>

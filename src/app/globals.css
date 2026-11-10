@@ -81,7 +81,7 @@ body {
   z-index: 2;
 }
 
-main {
+.container main {
   padding: 2rem;
   min-width: 0;
   max-width: 100%;
@@ -246,5 +246,110 @@ main {
 @media (max-width: 767px) {
   :root {
     --main-font-size: 16px;
+  }
+}
+
+/*
+ * Page backdrop: the selected hero scene continues behind the whole page,
+ * softened by a tint so text and cards stay readable.
+ */
+body::before {
+  content: "";
+  position: fixed;
+  /* Oversized so the blurred edges fall outside the viewport. */
+  inset: -24px;
+  filter: blur(5px);
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-bg-primary);
+  background-image:
+    linear-gradient(var(--scene-tint), var(--scene-tint)), var(--scene-image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+html {
+  --scene-tint: rgba(237, 242, 250, 0.1);
+  --scene-image: url("/hero/london/london-day-master.webp");
+}
+
+html[data-theme="dark"] {
+  --scene-tint: rgba(20, 20, 30, 0.3);
+  --scene-image: url("/hero/london/london-night-master.webp");
+}
+
+html[data-hero-scene="mountain"] {
+  --scene-image: url("/hero/mountain/mountain-day-master.webp");
+}
+
+html[data-theme="dark"][data-hero-scene="mountain"] {
+  --scene-image: url("/hero/mountain/mountain-night-master.webp");
+}
+
+html[data-hero-scene="beach"] {
+  --scene-image: url("/hero/beach/beach-day-master.webp");
+}
+
+html[data-theme="dark"][data-hero-scene="beach"] {
+  --scene-image: url("/hero/beach/beach-night-master.webp");
+}
+
+html[data-hero-scene="space"] {
+  --scene-image: url("/hero/space/space-day-master.webp");
+}
+
+html[data-theme="dark"][data-hero-scene="space"] {
+  --scene-image: url("/hero/space/space-night-master.webp");
+}
+
+/*
+ * Newsletter-style layout: each section is a frosted-glass panel in a
+ * centered column, so the scenery stays visible around and between panels.
+ */
+.container main {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 3.5rem;
+}
+
+.container main > div {
+  min-width: 0;
+  padding: 0.75rem 2rem 2.25rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 1.75rem;
+  box-shadow: 0 1.5rem 3.5rem rgba(20, 30, 60, 0.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.35);
+  backdrop-filter: blur(20px) saturate(1.35);
+}
+
+body[data-theme="dark"] .container main > div {
+  background: rgba(24, 24, 34, 0.62);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1.5rem 3.5rem rgba(0, 0, 0, 0.4);
+}
+
+.container main > #contact {
+  padding-top: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .container main {
+    gap: 1.5rem;
+    padding: 1.5rem 0.75rem 2rem;
+  }
+
+  .container main > div {
+    padding: 0.25rem 1rem 1.5rem;
+    border-radius: 1.25rem;
+  }
+
+  .container main > #contact {
+    padding-top: 1.75rem;
   }
 }
